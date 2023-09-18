@@ -1,0 +1,11 @@
+package Teste;
+import Entities.*;
+
+public class Teste {
+
+	public static void main(String[] args) {
+		
+		Animal animal1 = new Animal("Camelo", 150 , 4 ,"Amarelo","Terra",2.0);
+
+	}
+}

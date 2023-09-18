@@ -1,0 +1,30 @@
+package entities;
+import exceptions.RendaBrutaNegativeException;
+
+
+public class PessoaJuridica {
+	
+	private double rendaBruta;
+	
+	public double getRendaBruta(){
+		return this.rendaBruta;
+	}
+	
+	public PessoaJuridica(double rendaBruta) throws RendaBrutaNegativeException{
+		if(rendaBruta >= 0) {
+			this.rendaBruta = rendaBruta;
+		}else {
+			throw new RendaBrutaNegativeException();
+		}
+		
+	}
+	
+	public double calcImposto() {
+		return 0.1*this.rendaBruta;
+	}
+	
+	@Override
+	public String toString() {
+		return "Imposto é de " + calcImposto();
+	}
+}

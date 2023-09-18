@@ -1,0 +1,50 @@
+package Entities;
+
+public class Peixe extends Animal{
+	
+	private String barbatanas;
+	
+	private String cauda;
+	
+	public Peixe() {
+		super();
+	}
+	
+	public Peixe (String animal, double comprimento  , double velocidade, double barbatanas, String cauda) {
+		super( animal, comprimento ,velocidade);
+		this.patas = 0;
+		this.ambiente = "mar";
+		this.barbatanas=barbatanas;
+		this.cauda = cauda;
+		this.cor="cinzento";
+	}
+	
+	public Peixe (String animal, double comprimento , String cor , String ambiente , double velocidade, double barbatanas, String cauda) {
+		super(animal,comprimento ,cor,ambiente, velocidade);
+		this.patas = 0;
+		this.barbatanas=barbatanas;
+		this.cauda = cauda;
+	}
+	
+	public double getBarbatanas() {
+		return this.barbatanas;
+	}
+	
+	public void setBarbatanas(double barbatanas) {
+		this.barbatanas = barbatanas;
+	}
+	
+	public String cauda() {
+		return this.cauda;
+	}
+	
+	public void setCauda(String cauda) {
+		this.cauda = cauda;
+	}
+	
+	@Override
+	public String toString() {
+		super.toString();
+		return "\nCaracterista: " + barbatanas + cauda;
+	}
+}

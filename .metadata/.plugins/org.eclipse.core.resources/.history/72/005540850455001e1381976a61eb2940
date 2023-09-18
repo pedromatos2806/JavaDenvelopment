@@ -1,0 +1,13 @@
+import entities.PessoaFisica;
+import entities.PessoaJuridica;
+import exceptions.RendaBrutaNegativeException;
+
+
+public class Teste {
+
+	public static void main(String[] args) {
+		
+		
+	}
+
+}

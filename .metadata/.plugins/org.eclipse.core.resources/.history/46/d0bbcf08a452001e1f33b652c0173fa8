@@ -1,0 +1,25 @@
+
+public class ContaEspecial  extends ContaBancaria{
+	private double limite; 
+	
+	public ContaEspecial(String nomeCliente, String numConta, double saldo, double limite) {
+		super(nomeCliente, numConta, saldo);
+		this.limite = limite;
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public void Sacar(double value) throws Exception{
+		if(value < limite) {
+			super.Sacar(value);
+		}else {
+			throw new Exception() ;
+		}
+	}
+
+	//Pq não pode por o Override aqui?
+	public String tooString() {
+		String saldo = Double.toString(super.getSaldo());
+		return saldo;
+	}
+}

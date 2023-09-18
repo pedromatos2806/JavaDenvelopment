@@ -1,0 +1,28 @@
+
+public class ContaPoupanca extends ContaBancaria{
+	private double diaRendimento;
+	
+	public double getRendimento() {
+		return diaRendimento;
+	}
+	
+	public ContaPoupanca (String nomeCliente, String numConta, double saldo,double diaRendimento ) {
+		super(nomeCliente,numConta,saldo);
+		this.diaRendimento = diaRendimento;
+	}
+	
+	public void calcularNovoSaldo() throws Exception{
+		 if (saldo < 0) {
+				throw new Exception() ;
+		 }else {
+				double novosaldo = this.saldo * ((this.diaRendimento/100)+1);
+				super.Depositar(novosaldo);
+		 }
+	}
+	
+	@Override
+	public String toString() {
+		String saldoString = Double.toString(saldo);
+		return saldoString.toString();
+	}
+}

@@ -1,0 +1,31 @@
+package entities;
+import exceptions.RendaBrutaNegativeException;
+public class Contribuinte {
+	private String nome;
+
+	private double rendaBruta;
+
+	public Contribuinte(String nome, double rendaBruta) throws RendaBrutaNegativeException{
+		this.nome = nome;
+		if(rendaBruta > 0) {
+			this.rendaBruta = rendaBruta;
+		}else {
+			throw new RendaBrutaNegativeException();
+		}
+	}
+	public double getRendaBruta() {
+		return rendaBruta;
+	}
+	
+	public void setRendaBruta(double rendaBruta) {
+		this.rendaBruta = rendaBruta;
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+}

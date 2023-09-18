@@ -1,0 +1,25 @@
+package Entities;
+
+public class Mamifero extends Animal{
+	private String alimento;
+	
+	public Mamifero(String animal, double comprimento, String cor, double velocidade) {
+		super(animal, comprimento, patas, cor, velocidade);
+		// TODO Auto-generated constructor stub
+		this.ambiente = "terra";
+	}
+	
+	public String getAlimento() {
+		return this.alimento;
+	}
+	
+	public void setAlimento(String alimento) {
+		this.alimento = alimento;
+	}
+	
+	@Override
+	public String toString() {
+		super.toString();
+		return "\nAlimento: " + alimento;
+	}
+}

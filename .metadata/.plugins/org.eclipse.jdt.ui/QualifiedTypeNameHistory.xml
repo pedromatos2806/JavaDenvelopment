@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="javax.swing.plaf.synth.SynthOptionPaneUI"/>
+    <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+    <fullyQualifiedTypeName name="ContaEspecial"/>
+    <fullyQualifiedTypeName name="com.sun.tools.classfile.Exceptions_attribute"/>
+    <fullyQualifiedTypeName name="exceptions.rendaBrutaNegativeException"/>
+    <fullyQualifiedTypeName name="entities.PessoaFisica"/>
+    <fullyQualifiedTypeName name="exceptions.RendaBrutaNegativeException"/>
+    <fullyQualifiedTypeName name="entities.PessoaJuridica"/>
+</qualifiedTypeNameHistroy>

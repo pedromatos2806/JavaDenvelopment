@@ -1,0 +1,10 @@
+package Teste;
+import Entities.*;
+
+public class Teste {
+
+	public static void main(String[] args) {
+		Animal animal = new Animal();
+
+	}
+}

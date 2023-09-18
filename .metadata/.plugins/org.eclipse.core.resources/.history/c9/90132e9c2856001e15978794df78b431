@@ -1,0 +1,39 @@
+
+public class Peixe extends Animal{
+	
+	private double barbatanas;
+	
+	private String cauda;
+	
+	public Peixe (String animal, double comprimento , String cor , double velocidade, double barbatanas, String cauda) {
+		super( animal, comprimento ,  cor ,velocidade);
+		this.patas = 0;
+		this.ambiente = "mar";
+		this.barbatanas=barbatanas;
+		this.cauda = cauda;
+	}
+	
+	public Peixe (String animal, double comprimento , String cor , String ambiente , double velocidade, double barbatanas, String cauda) {
+		super(animal,comprimento ,cor,ambiente, velocidade);
+		this.patas = 0;
+		this.barbatanas=barbatanas;
+		this.cauda = cauda;
+	}
+	
+	public double getBarbatanas() {
+		return this.barbatanas;
+	}
+	
+	public void setBarbatanas(double barbatanas) {
+		this.barbatanas = barbatanas;
+	}
+	
+	public String cauda() {
+		return this.cauda;
+	}
+	
+	public void setCauda(String cauda) {
+		this.cauda = cauda;
+	}
+	
+}

@@ -1,0 +1,47 @@
+
+public class ContaBancaria {
+
+	// Tributes
+	private String nomeCliente;
+	private String numConta;
+	protected double saldo;
+
+	// Constructors
+
+	public ContaBancaria(String nomeCliente, String numConta, double saldo) {
+		this.nomeCliente = nomeCliente;
+		this.numConta = numConta;
+		this.saldo = saldo;
+	}
+
+	
+	public double getSaldo() {
+		return saldo;
+	}
+	
+
+	public String getNumConta() {
+		return numConta;
+	}
+	
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+
+	// Methods
+	public void Sacar(double value) throws Exception {
+		if (saldo - value < 0) {
+			throw new RuntimeException("O valor sacado foi excedido!");
+		} else {
+			this.saldo -= value;
+		}
+	}
+
+	public void Depositar(double value) throws Exception {
+		if(value <= 0) {
+			throw new Exception() ;
+		}
+		this.saldo += value;
+	}
+
+}
