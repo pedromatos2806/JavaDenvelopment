@@ -6,7 +6,10 @@ public  class Contribuinte {
 
 	protected double rendaBruta;
 
-	public Contribuinte(String nome, double rendaBruta) {
+	public Contribuinte(String nome, double rendaBruta) throws RendaBrutaNegativeException {
+		if(rendaBruta <0) {
+			throw new RendaBrutaNegativeException();
+		}
 		this.nome = nome;
 		this.rendaBruta = rendaBruta;
 

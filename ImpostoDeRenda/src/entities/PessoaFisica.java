@@ -4,7 +4,7 @@ import exceptions.RendaBrutaNegativeException;
 public class PessoaFisica extends Contribuinte {
 	private String cpf;
 	
-	public PessoaFisica(String nome, double rendaBruta, String cpf) {
+	public PessoaFisica(String nome, double rendaBruta, String cpf) throws RendaBrutaNegativeException {
 		super(nome, rendaBruta);
 		this.cpf=cpf;
 	}
@@ -17,7 +17,10 @@ public class PessoaFisica extends Contribuinte {
 		this.cpf = cpf;
 	}
 	
-	public double calcImposto()  {
+	public double calcImposto() throws RendaBrutaNegativeException  {
+			if(getRendaBruta() < 0) {
+				throw new RendaBrutaNegativeException();
+			}
 			 if(getRendaBruta()	>= 0 && getRendaBruta() <=	1400  ) {
 				return 0;
 			}else if(getRendaBruta() > 1400 && getRendaBruta() <= 2100){
