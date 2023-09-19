@@ -15,6 +15,7 @@ public class Teste {
 		Scanner scan = new Scanner(System.in);
 		
 		for(int i = 0 ; i < 4 ; i++) {
+			
 			try {
 				System.out.println("Digite o salário base:");
 				double salario = scan.nextDouble();
@@ -39,7 +40,6 @@ public class Teste {
 			}
 		}
 		
-
 		System.out.println("FOLHA DE PAGAMENTOS:");
 		escola.imprimirFolha();
 	}

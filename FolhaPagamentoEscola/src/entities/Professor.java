@@ -8,9 +8,8 @@ public class Professor extends Funcionario {
 		this.setFalta(0);
 	}
 
-	public Professor(double salarioBase, int falta, double horasExtras) throws NewException{
+	public Professor( double salarioBase, int falta, double horasExtras ) throws NewException {
 		super(salarioBase, falta, horasExtras);
-		
 	}
 
 	private double calcularSalario() {

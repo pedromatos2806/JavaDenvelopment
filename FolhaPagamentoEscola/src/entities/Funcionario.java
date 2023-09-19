@@ -13,7 +13,7 @@ public class Funcionario {
 
 
 	public Funcionario(double salarioBase, int falta, double horasExtras) throws NewException{
-		if(falta < 0 || salarioBase < 0 || horasExtras <0) {
+		if(falta < 0 || salarioBase < 0 || horasExtras < 0) {
 			throw new NewException();
 		}
 		this.salarioBase = salarioBase;

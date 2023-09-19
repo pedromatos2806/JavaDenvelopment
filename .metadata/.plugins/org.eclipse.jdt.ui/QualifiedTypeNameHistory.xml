@@ -6,6 +6,9 @@
     <fullyQualifiedTypeName name="com.sun.tools.classfile.Exceptions_attribute"/>
     <fullyQualifiedTypeName name="exceptions.rendaBrutaNegativeException"/>
     <fullyQualifiedTypeName name="entities.PessoaFisica"/>
-    <fullyQualifiedTypeName name="exceptions.RendaBrutaNegativeException"/>
     <fullyQualifiedTypeName name="entities.PessoaJuridica"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="Exceptions.NewException"/>
+    <fullyQualifiedTypeName name="exceptions.NewException"/>
+    <fullyQualifiedTypeName name="exceptions.RendaBrutaNegativeException"/>
 </qualifiedTypeNameHistroy>
