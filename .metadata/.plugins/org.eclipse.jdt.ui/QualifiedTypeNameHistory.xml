@@ -11,4 +11,6 @@
     <fullyQualifiedTypeName name="Exceptions.NewException"/>
     <fullyQualifiedTypeName name="exceptions.NewException"/>
     <fullyQualifiedTypeName name="exceptions.RendaBrutaNegativeException"/>
+    <fullyQualifiedTypeName name="SalaMedia"/>
+    <fullyQualifiedTypeName name="exceptions.LugaresExcedidos"/>
 </qualifiedTypeNameHistroy>
