@@ -1,6 +1,6 @@
 import exceptions.*;
 
-public class SalaGrande extends Sala{
+public class SalaGrande extends Sala {
 	private int lugares = 500;
 	
 	public SalaGrande(String nome, int ingressosComprados) throws LugaresExcedidos{
