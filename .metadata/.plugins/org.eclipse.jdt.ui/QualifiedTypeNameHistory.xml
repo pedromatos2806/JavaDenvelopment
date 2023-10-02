@@ -13,4 +13,8 @@
     <fullyQualifiedTypeName name="exceptions.RendaBrutaNegativeException"/>
     <fullyQualifiedTypeName name="SalaMedia"/>
     <fullyQualifiedTypeName name="exceptions.LugaresExcedidos"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="exceptions.ExisteDisciplinaException"/>
+    <fullyQualifiedTypeName name="entities.RendimentoPesca"/>
+    <fullyQualifiedTypeName name="exceptions.LugaresExcedidosException"/>
 </qualifiedTypeNameHistroy>
