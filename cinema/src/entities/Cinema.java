@@ -2,11 +2,11 @@ package entities;
 
 public class Cinema {
 	
-	private SalaGrande grande [];
+	private SalaGrande[] grande ;
 	
-	private SalaMedia media[];
+	private SalaMedia[] media;
 	
-	private SalaPequena pequena[];
+	private SalaPequena[] pequena;
 	
 	public Cinema() {
 		this.grande = new SalaGrande[3]; 

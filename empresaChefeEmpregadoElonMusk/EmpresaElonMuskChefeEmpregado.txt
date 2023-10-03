@@ -1,0 +1,11 @@
+Escreva um programa orientado a objetos para cadastrar pessoas que trabalham em uma
+multinacional onde o CEO é Elon Musk. As pessoas que trabalham nesta empresa podem
+ser chefes, que têm empregados e outros chefes sob sua supervisão, ou então apenas
+empregados que não têm subordinados. Cada chefe tem no máximo 10 subordinados entre 
+chefes e empregados. Deve ser possível mostrar a lista dos empregados subordinados
+(diretos e indiretos) de uma pessoa. Toda pessoa deve ainda ser capaz de informar 
+a lista de seus superiores e deve ser capaz de encotnrar uma pessoa que seja seu 
+subordinado direto ou indireto a partir do atributo nome desse subordinado. Toda 
+pessoa possui um superior. A empresa deve ser capaz de adicionar pessoas (chefes 
+ou empregados), listar os chefes e separadamente, listar apenas os empregados que
+fazem parte da hierarquia
