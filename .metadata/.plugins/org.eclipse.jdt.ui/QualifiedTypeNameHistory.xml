@@ -20,4 +20,5 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="excpetions.UltrapassouLimiteSubordinadoExceptions"/>
     <fullyQualifiedTypeName name="excpetions.UltrapassouLimiteSubordinadoException"/>
+    <fullyQualifiedTypeName name="exception.NaoHaPesquisadoresException"/>
 </qualifiedTypeNameHistroy>
