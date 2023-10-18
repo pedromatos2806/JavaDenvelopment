@@ -43,8 +43,11 @@ public abstract class Pesquisador {
 		this.nome = nome;
 	}
 
-	public List<Pesquisador> getPesquisadores() {
-		return pesquisadores;
+	public List<Pesquisador> getListPesquisadores() {
+		if (pesquisadores.size()	>	0)
+			return pesquisadores;
+		else
+			return null;
 	}
 
 	public void setPesquisadores(List<Pesquisador> pesquisadores) {
@@ -81,15 +84,29 @@ public abstract class Pesquisador {
 		return false;
 	}
 	
+	public Pesquisador getPesquisador(String nome) {
+		
+		for (Pesquisador obj : pesquisadores) {
+			if(	obj.getNome().equals(nome)	) {
+				return obj;
+			}else if (obj instanceof Coordenador && obj.getListPesquisadores() != null) {
+				obj.getPesquisador(nome);
+			}
+		}
+		return null;
+	}
+	
 	public int getQtdPesquisadores() {
+		
 		int count = 0;
+		
 		for (Pesquisador pesquisador : pesquisadores) {
 			if(pesquisador instanceof Professor) {
 				count++;
-			}else if(pesquisador instanceof Coordenador && getPesquisadores() == null){
-				count ++;	
+			}else if(pesquisador instanceof Coordenador && pesquisadores.size() == 0){
+				count ++;
 			} else {
-				getQtdPesquisadores();
+				pesquisador.getQtdPesquisadores();
 			}
 		}
 		return count;
@@ -101,7 +118,7 @@ public abstract class Pesquisador {
 			if(obj.getNome().equals(nome)){
 				salario =  getValorPago();
 				return salario;
-			}else if(obj instanceof Coordenador && getPesquisadores() != null) {
+			}else if(obj instanceof Coordenador && getListPesquisadores() != null) {
 				obj.getValorPagoPesquisadorList(nome);
 			}
 		}
