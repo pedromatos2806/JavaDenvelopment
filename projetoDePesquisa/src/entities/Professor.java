@@ -1,31 +1,38 @@
 package entities;
 
+import exception.NaoHaPesquisadoresException;
 
-public class Professor extends Pesquisador
-{
+public class Professor extends Pesquisador{
+	//Constructors
 	public Professor() {
 		super();
 	}
+	
+	public Professor(String nome) {
+		super(nome);
+	}
+	
 	public Professor (String nome, Pesquisador cordenador) {
 		super(nome,cordenador);
 	}
 	
-	
-	@Override
-	public void inserirPesquisador(Pesquisador pesquisador) {
-		// TODO Auto-generated method stub
-		System.out.println("Nao é Possível inserir um Pesquisador em um Professor!");
+	// Methods
+	public  int getQtdPesquisadores() throws NaoHaPesquisadoresException {
+		throw new NaoHaPesquisadoresException();
 	}
+
 	@Override
-	public int getQtdPesquisadores() {
-		// como eu lanço a excessão aqui??
-		// já que não há pesquisadores para adicionar
-		return 0;
+	public void inserirPesquisador(String pai, Pesquisador filho) throws NaoHaPesquisadoresException {
+		throw new NaoHaPesquisadoresException();	
 	}
 	
 	@Override
-	public double getValorPago() {
-		return 220 + ( (30/100) * getCoordenador().getValorPago() );
+	public void inserirPesquisador(Pesquisador filho) throws NaoHaPesquisadoresException{
+		throw new NaoHaPesquisadoresException();
 	}
 	
+	@Override
+	public double getValorPago() throws NaoHaPesquisadoresException {
+		return 220 + ( (30/100) * this.getCoordenador().getValorPago() );
+	}
 }

@@ -1,7 +1,5 @@
 package entities;
 
-import java.util.List;
-
 import exception.NaoHaPesquisadoresException;
 
 public class ProjetoPesquisa {
@@ -9,6 +7,7 @@ public class ProjetoPesquisa {
 	private String nome;
 	private Pesquisador coordenador;
 	
+	// Constructors 
 	public ProjetoPesquisa() {
 		this.nome = "";
 		coordenador = new Coordenador("Mara Andrade");
@@ -18,7 +17,8 @@ public class ProjetoPesquisa {
 		this.nome = nome;
 		coordenador = new Coordenador("Mara Andrade");
 	}
-
+	
+	// Getters and Setters
 	public String getNome() {
 		return nome;
 	}
@@ -35,44 +35,40 @@ public class ProjetoPesquisa {
 		this.coordenador = coordenador;
 	}
 	
-	public void inserirPesquisador(String nomePai ,Pesquisador filho) {
-		//ir no primeiro pesquisador do projeto de pesquisa 
-		// pesquisar se há algum pai com esse nome 
-		// se houver algum pai com esse nome ,se for, 
-		//inserir o pesquisador na lista de pesquisadores do pai 
-		// se não for, busque na lista de pesquisadores do filho alguém com esse nome.
+	// Methods 
+	public void inserirPesquisador(String nomePai ,Pesquisador filho) throws NaoHaPesquisadoresException {
+//		ir no primeiro pesquisador do projeto de pesquisa 
+//		 pesquisar se há algum pai com esse nome 
+//		 se houver algum pai com esse nome ,se for, 
+//		inserir o pesquisador na lista de pesquisadores do pai 
+//		 se não for, busque na lista de pesquisadores do filho alguém com esse nome.
 		if(	nomePai.equals(	getCoordenador().getNome()	)	) {
 			getCoordenador().getListPesquisadores().add(filho);
 		}else {
 			if(	getCoordenador().getPesquisador(nomePai) != null) {
-				var obj = getCoordenador().getPesquisador(nomePai);
+				Pesquisador obj = getCoordenador().getPesquisador(nomePai);
 				obj.inserirPesquisador(filho);
+			}else {
+				System.out.println("Não há nenhum pai com esse nome!");
 			}
 		}
-		
 	}
 
-	public int getQtdPesquisadores() {
+	public int getQtdPesquisadores() throws NaoHaPesquisadoresException {
 		int qtd = 1;
 		 qtd += getCoordenador().getQtdPesquisadores();
 		return qtd;
 	}
 	
-//	public double getValorPago( String nome ) throws NaoHaPesquisadoresException{
-//		double salario = -1;
-//		for(Pesquisador pesquisador : pesquisadores) {
-//			if(pesquisador.getNome().equals(nome)) {
-//				salario = pesquisador.getValorPago();
-//				return salario;
-//			}else if(pesquisador instanceof Coordenador &&  pesquisador.getListPesquisadores() != null) {
-//				//chamar o get valor pago para a lista de pesquisadores desse coordenador!
-//				 pesquisador.getValorPagoPesquisadorList(nome);
-//			}
-//		}
-//		if(salario == -1) {
-//			 throw new NaoHaPesquisadoresException();
-//		}
-//		salario = 0;
-//		return salario;
-//	}
+	public double getValorPago( String nome ) throws NaoHaPesquisadoresException{
+		   if(	getCoordenador().getNome().equals(nome)	) {
+			   return getCoordenador().getValorPago();
+		   }
+		   else if ( getCoordenador().getPesquisador(nome) != null ) {
+			   Pesquisador obj = getCoordenador().getPesquisador(nome);
+			   return obj.getValorPago();
+		   }else {
+			   throw new NaoHaPesquisadoresException();
+		   }
+	 }
 }
