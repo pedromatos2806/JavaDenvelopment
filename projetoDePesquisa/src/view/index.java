@@ -6,12 +6,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JToolBar;
+
+import entities.Coordenador;
+import entities.Pesquisador;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
+import javax.swing.ComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JRadioButton;
@@ -22,12 +29,11 @@ import javax.swing.JList;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
-
-public class index {
+import entities.*;
+;public class index {
 
 	private JFrame frame;
 	private JTextField textFieldNomePesquisador;
-
 	/**
 	 * Launch the application.
 	 */
@@ -67,6 +73,7 @@ public class index {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		frame.getContentPane().add(tabbedPane);
 		
+		
 		JPanel panelCadastramentoFuncionario = new JPanel();
 		tabbedPane.addTab("Cadastramento Funcionário", null, panelCadastramentoFuncionario, null);
 		panelCadastramentoFuncionario.setLayout(null);
@@ -81,6 +88,7 @@ public class index {
 		textFieldNomePesquisador.setBounds(121, 33, 269, 20);
 		panelCadastramentoFuncionario.add(textFieldNomePesquisador);
 		textFieldNomePesquisador.setColumns(10);
+		
 		
 		JLabel lblTipo = new JLabel("Tipo:");
 		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 15));

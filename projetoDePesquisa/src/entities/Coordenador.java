@@ -20,15 +20,15 @@ public class Coordenador extends Pesquisador{
 	public int getQtdPesquisadores() throws NaoHaPesquisadoresException {
 		
 		int count = 0;
-		
-		for (Pesquisador pesquisador : this.getListPesquisadores()) {
-			if(pesquisador instanceof Professor) {
-				count++;
-			}else if(pesquisador instanceof Coordenador && (this.getListPesquisadores().size() == 0 || this.getListPesquisadores() == null)){
-				count ++;
-			} else {
-				pesquisador.getQtdPesquisadores();
-			}
+		if( getListPesquisadores()!= null) {
+			for (Pesquisador pesquisador : this.getListPesquisadores()) {
+				if(pesquisador instanceof Professor) {
+					count++;
+				}else if(pesquisador instanceof Coordenador){
+					count ++;
+					count +=( (Coordenador) pesquisador).getQtdPesquisadores();
+				}
+			}	
 		}
 		return count;
 	}
