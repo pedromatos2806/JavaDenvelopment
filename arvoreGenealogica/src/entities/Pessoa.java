@@ -45,19 +45,21 @@ public abstract class Pessoa {
 	public Pessoa findPessoa (String nome) {
 		if(nome.equalsIgnoreCase(getNome())) {
 			return  this;
-		}else if(getDescendentes()!= null) {
+		}else if(getDescendentes() != null) {
 			for (Pessoa p : descendentes) {
 				if(p.getNome().equalsIgnoreCase(nome)) {
 					return p;
 				}else {
-					p.findPessoa(nome);
+					Pessoa pessoaEncontrada = p.findPessoa(nome);
+					if (pessoaEncontrada != null) {
+						return pessoaEncontrada;
+					}
 				}
 			}
 		}
 		return null;
 	}
-	
-	
+		
 	public int countQtdFilhos(){
 		int count =	0;
 		if (getDescendentes() != null) {	
@@ -68,6 +70,7 @@ public abstract class Pessoa {
 		}
 		return count;	
 	}
+	
 	public String listarAscendentes() {
 		Pessoa paiAtual = this.getPai();
 		String nomes="";
@@ -77,6 +80,7 @@ public abstract class Pessoa {
 		}
 		return nomes;
 	}
+	
 	public abstract Pessoa cadastrarFilho ( String nome , String sexo ) throws NatimortoNaoTemFilhoException;
 
 	@Override

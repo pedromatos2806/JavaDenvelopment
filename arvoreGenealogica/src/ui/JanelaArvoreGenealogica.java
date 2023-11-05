@@ -80,8 +80,8 @@ import javax.swing.JRadioButton;
 		
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(e.getSource()==btnAdicionar) {
-					String nomeNovaPessoa=txtNome.getText();
+				if(e.getSource() == btnAdicionar) {
+					String nomeNovaPessoa = txtNome.getText();
 					String nomePai = "" + cbDescendentes.getSelectedItem();
 					Pessoa pai = joao.findPessoa(nomePai);
 					String sexo = "";
@@ -90,7 +90,7 @@ import javax.swing.JRadioButton;
 				}else {
 					 sexo = "Masculino";
 				}
-					if(pai!=null) {
+					if( pai != null ) {
 						try {
 							
 /*							if ("masculino".equalsIgnoreCase(sexo)) {
@@ -99,13 +99,13 @@ import javax.swing.JRadioButton;
 								Pessoa nova = new Filha();
 							}
 */							
-							  Pessoa nova = pai.cadastrarFilho(nomeNovaPessoa,sexo);
+							Pessoa nova = pai.cadastrarFilho(nomeNovaPessoa,sexo);
 							cbDescendentes.addItem(nova.getNome());
 						} catch (NatimortoNaoTemFilhoException e1) {
 							JOptionPane.showMessageDialog(btnAdicionar, "Natimorto não pode ter filhos!");
 						}
 					}else {
-						System.out.println("pessoa nula");
+						JOptionPane.showMessageDialog(btnAdicionar, "Pai nulo !!");
 					}
 				}
 			}
