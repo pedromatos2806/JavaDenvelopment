@@ -22,8 +22,6 @@
     <fullyQualifiedTypeName name="entities.Pesquisador"/>
     <fullyQualifiedTypeName name="entities.Coordenador"/>
     <fullyQualifiedTypeName name="entities.ProjetoPesquisa"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="java.util.Random"/>
     <fullyQualifiedTypeName name="entities.Natimorto"/>
@@ -39,4 +37,19 @@
     <fullyQualifiedTypeName name="javax.swing.ButtonGroup"/>
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
     <fullyQualifiedTypeName name="javax.swing.DefaultComboBoxModel"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="ado.ConexaoPostgreSQL"/>
+    <fullyQualifiedTypeName name="model.Vendas"/>
+    <fullyQualifiedTypeName name="dao.DAOVendas"/>
+    <fullyQualifiedTypeName name="dao.DAOVendasPostgree"/>
+    <fullyQualifiedTypeName name="javax.naming.spi.DirStateFactory.Result"/>
+    <fullyQualifiedTypeName name="dao.DAOProdutos"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="dao.ConexaoPostgreSQL"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="dao.DAOProdutosPostgree"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
 </qualifiedTypeNameHistroy>
