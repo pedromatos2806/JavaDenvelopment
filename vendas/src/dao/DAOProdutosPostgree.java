@@ -23,7 +23,7 @@ public class DAOProdutosPostgree extends DAOProdutos{
 	public List<Produtos> getProdutos() throws SQLException {
 		List<Produtos> lista = new ArrayList<Produtos>();
 		
-		this.pstm = this.conexao.getConn().prepareStatement("SELECT * FROM PRODUTOS");
+		this.pstm = this.conexao.getConn().prepareStatement("SELECT * FROM produtos");
 		
 		ResultSet rs = this.pstm.executeQuery();
 		
@@ -41,7 +41,9 @@ public class DAOProdutosPostgree extends DAOProdutos{
 
 	@Override
 	public Produtos getProduto(String nome) throws SQLException {
+		
 		this.pstm = this.conexao.getConn().prepareStatement("select * from produtos where nome like '?';");
+		// no parâmetro necessita colocar apostrofe já que no banco é uma string utiliza-se apostrofe?
 		this.pstm.setString(1, nome);
 		ResultSet rs = this.pstm.executeQuery();
 		

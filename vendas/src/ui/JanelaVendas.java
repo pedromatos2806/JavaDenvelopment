@@ -16,20 +16,26 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import dao.*;
 import model.*;
+import javax.swing.JTabbedPane;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
 
 public class JanelaVendas {
 
 	private JFrame frame;
-	private JTextField txtFieldQuantidade;
-	private JLabel lblProduto = new JLabel("produto");
-
-	private JComboBox cbProduto = new JComboBox<>();
-	private JLabel lblQuantidade = new JLabel("quantidade");
-	private JButton btnComprar = new JButton("Comprar");
-	private JTextArea ValorPago = new JTextArea();
-	private JLabel lblValorPago = new JLabel("Valor");
 	private DAOProdutosPostgree produtos = new DAOProdutosPostgree();
-	
+	private final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+	private final JPanel panelConsultar = new JPanel();
+	private final JPanel panelAdicionar = new JPanel();
+	private JTextField txtFieldProduto_Adicionar;
+	private JTextField textFieldID_Adicionar;
+	private JTextField textFieldPreco_Adicionar;
+	private JComboBox cbProdutos = new JComboBox();
+	private JButton btnAdicionar = new JButton("Adicionar");
+	private JLabel lblPreco_Adicionar = new JLabel("Preço :");
+	private JTextPane txtPaneID = new JTextPane();
+	private JTextPane txtPanelPreco = new JTextPane();
+	private List<Produtos> listaProdutos;
 	
 	
 	/**
@@ -63,53 +69,97 @@ public class JanelaVendas {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		
+		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
+		
+		tabbedPane.addTab("Consultar", null, panelConsultar, null);
+		panelConsultar.setLayout(null);
 		
 		
-		lblProduto.setBounds(10, 46, 46, 14);
-		frame.getContentPane().add(lblProduto);
-		cbProduto.addActionListener(new ActionListener() {
+        try {
+            listaProdutos = produtos.getProdutos();
+            // Agora que você tem a lista de produtos, adicione-os ao JComboBox.
+            for (Produtos produto : listaProdutos) {
+                cbProdutos.addItem(produto.getNomeString()); // Adicione o nome do produto ao JComboBox
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+            // Lide com a exceção conforme necessário.
+        }
+        
+		JLabel lblProdutos = new JLabel("Produtos :");
+		lblProdutos.setBounds(86, 50, 84, 14);
+		panelConsultar.add(lblProdutos);
+		cbProdutos.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // No ActionListener, você pode usar a listaProdutos para obter o produto selecionado e atualizar os campos conforme necessário.
+                int selectedIndex = cbProdutos.getSelectedIndex();
+                if (selectedIndex >= 0) {
+                    Produtos produtoSelecionado = listaProdutos.get(selectedIndex);
+                    txtPaneID.setText(String.valueOf(produtoSelecionado.getId())); // Atualize o campo ID
+                    txtPanelPreco.setText(String.valueOf(produtoSelecionado.getPreco())); // Atualize o campo preço
+                }
+            }
+        });
+		
+		
+		cbProdutos.setBounds(180, 46, 130, 22);
+		panelConsultar.add(cbProdutos);
+		
+		
+		txtPaneID.setBounds(157, 101, 224, 20);
+		panelConsultar.add(txtPaneID);
+		
+		JLabel lblID = new JLabel("ID :");
+		lblID.setBounds(86, 101, 46, 14);
+		panelConsultar.add(lblID);
+		
+		JLabel lblPreco = new JLabel("Preço :");
+		lblPreco.setBounds(86, 132, 46, 14);
+		panelConsultar.add(lblPreco);
+		
+		
+		txtPanelPreco.setBounds(157, 126, 224, 20);
+		panelConsultar.add(txtPanelPreco);
+		
+		tabbedPane.addTab("Adicionar", null, panelAdicionar, null);
+		panelAdicionar.setLayout(null);
+		
+		JLabel lblProduto_Adicionar = new JLabel("Produto :");
+		lblProduto_Adicionar.setBounds(80, 29, 73, 14);
+		panelAdicionar.add(lblProduto_Adicionar);
+		
+		txtFieldProduto_Adicionar = new JTextField();
+		txtFieldProduto_Adicionar.setBounds(189, 26, 131, 20);
+		panelAdicionar.add(txtFieldProduto_Adicionar);
+		txtFieldProduto_Adicionar.setColumns(10);
+		
+		JLabel lblID_Adicionar = new JLabel("ID :");
+		lblID_Adicionar.setBounds(80, 66, 46, 14);
+		panelAdicionar.add(lblID_Adicionar);
+		
+		textFieldID_Adicionar = new JTextField();
+		textFieldID_Adicionar.setColumns(10);
+		textFieldID_Adicionar.setBounds(189, 63, 131, 20);
+		panelAdicionar.add(textFieldID_Adicionar);
+		
+
+		
+		lblPreco_Adicionar.setBounds(80, 104, 46, 14);
+		panelAdicionar.add(lblPreco_Adicionar);
+		
+		textFieldPreco_Adicionar = new JTextField();
+		textFieldPreco_Adicionar.setColumns(10);
+		textFieldPreco_Adicionar.setBounds(189, 101, 131, 20);
+		panelAdicionar.add(textFieldPreco_Adicionar);
+		
+		
+		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cbProduto.setVisible(true);
-				List<Produtos> lista = null;
-		        try {
-		            lista = produtos.getProdutos();
-		            
-		            
-		        } catch (SQLException e1) {
-		            e1.printStackTrace();
-		        }
-				
-				
-				//cbProduto.add(produtos.getProdutos());
-				
-				
 			}
 		});
-		
-		
-		cbProduto.setBounds(66, 42, 211, 22);
-		frame.getContentPane().add(cbProduto);
-		//cbQuantidade.setModel(new DefaultComboBoxModel(new String[] {""}));
-		
-		lblQuantidade.setBounds(10, 101, 67, 14);
-		frame.getContentPane().add(lblQuantidade);
-		
-		txtFieldQuantidade = new JTextField();
-		txtFieldQuantidade.setBounds(87, 98, 127, 20);
-		frame.getContentPane().add(txtFieldQuantidade);
-		txtFieldQuantidade.setColumns(10);
-		
-		
-		btnComprar.setBounds(160, 190, 89, 23);
-		frame.getContentPane().add(btnComprar);
-		
-		
-		ValorPago.setBounds(86, 143, 321, 22);
-		frame.getContentPane().add(ValorPago);
-		
-		
-		lblValorPago.setBounds(10, 148, 46, 14);
-		frame.getContentPane().add(lblValorPago);
+		btnAdicionar.setBounds(119, 143, 176, 23);
+		panelAdicionar.add(btnAdicionar);
 	}
 }
