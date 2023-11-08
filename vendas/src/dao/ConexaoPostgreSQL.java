@@ -6,12 +6,12 @@ import java.sql.SQLException;
 
 public class ConexaoPostgreSQL {
 	
-    private static final String URL = "jdbc:postgresql://localhost/POO";
+    private static final String URL = "jdbc:postgresql://localhost:5433/POO";
     //private static final String USUARIO = "seu_usuario";
     //private static final String SENHA = "sua_senha";
 
     public Connection getConn() throws SQLException {
-        Connection conn = DriverManager.getConnection(URL);
+        Connection conn = DriverManager.getConnection(URL,"postgres","alunoifba");
         return conn;
     }
 

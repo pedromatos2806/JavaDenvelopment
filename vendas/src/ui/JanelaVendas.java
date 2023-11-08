@@ -74,8 +74,8 @@ public class JanelaVendas {
 				List<Produtos> lista = null;
 		        try {
 		            lista = produtos.getProdutos();
-		            DefaultComboBoxModel<Produtos> model = new DefaultComboBoxModel<>(lista.toArray(new Produtos[0]));
-		            cbProduto.setModel(model);
+		            
+		            
 		        } catch (SQLException e1) {
 		            e1.printStackTrace();
 		        }

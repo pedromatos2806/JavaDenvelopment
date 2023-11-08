@@ -9,24 +9,31 @@ import java.sql.SQLException;
 public class Teste {
 
 	public static void main(String[] args) {
-		String url = "jdbc:postgresql://localhost/POO";
 		
+		String url = "jdbc:postgresql://localhost:5433/POO";
+		String user = "postgres";
+		String password = "alunoifba";
+		String nomeProduto = "BOLA";
 		try {
 			
-			Connection conn = DriverManager.getConnection(url,"" ,""); //meu banco nao tem senha nem usuario
+			
+
+			//usei isso no banco
+			// ALTER USER postgres PASSWORD 'alunoifba';
+			//select USER;
 			
 			System.out.println("Conectou");
-			
-			PreparedStatement psmp = conn.prepareStatement("select * from produtos where nome like ?");
-			psmp.setString(1, "BOLA");
+			Connection conn = DriverManager.getConnection(url,user,password);
+			PreparedStatement psmp = conn.prepareStatement("SELECT * FROM produtos WHERE nome LIKE ?");
+			psmp.setString(1, "%" + nomeProduto + "%");
 			ResultSet rs=psmp.executeQuery();
 			
-			while(rs.next()) {
+			if(rs.next()) {
 				String nome=rs.getString("nome");
 				int id=rs.getInt("id");
 				double preco = rs.getDouble("preco");
 				
-				System.out.println(id +" - " + nome + " - "+ preco );
+				System.out.println(id +" - " + nome + " - " + preco );
 			}
 			
 			
