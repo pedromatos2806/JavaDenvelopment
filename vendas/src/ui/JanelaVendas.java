@@ -79,13 +79,9 @@ public class JanelaVendas {
 		
         try {
             listaProdutos = produtos.getProdutos();
-            // Agora que você tem a lista de produtos, adicione-os ao JComboBox.
-            for (Produtos produto : listaProdutos) {
-                cbProdutos.addItem(produto.getNomeString()); // Adicione o nome do produto ao JComboBox
-            }
+            listaProdutos.forEach(item -> cbProdutos.addItem(item.getNomeString()));
         } catch (SQLException e1) {
             e1.printStackTrace();
-            // Lide com a exceção conforme necessário.
         }
         
 		JLabel lblProdutos = new JLabel("Produtos :");
@@ -93,12 +89,12 @@ public class JanelaVendas {
 		panelConsultar.add(lblProdutos);
 		cbProdutos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // No ActionListener, você pode usar a listaProdutos para obter o produto selecionado e atualizar os campos conforme necessário.
+     
                 int selectedIndex = cbProdutos.getSelectedIndex();
                 if (selectedIndex >= 0) {
                     Produtos produtoSelecionado = listaProdutos.get(selectedIndex);
-                    txtPaneID.setText(String.valueOf(produtoSelecionado.getId())); // Atualize o campo ID
-                    txtPanelPreco.setText(String.valueOf(produtoSelecionado.getPreco())); // Atualize o campo preço
+                    txtPaneID.setText(String.valueOf(produtoSelecionado.getId())); 
+                    txtPanelPreco.setText(String.valueOf(produtoSelecionado.getPreco()));
                 }
             }
         });

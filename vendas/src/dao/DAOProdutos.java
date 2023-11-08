@@ -5,11 +5,13 @@ import java.util.List;
 
 import model.Produtos;
 
-public abstract class DAOProdutos {
+public interface DAOProdutos {
 	
 	
-	public abstract List<Produtos> getProdutos() throws SQLException;
+	public  List<Produtos> getProdutos() throws SQLException;
 	
-	public abstract Produtos getProduto(String nome) throws SQLException;
+	public  Produtos getProduto(String nome) throws SQLException;
+	
+	public void addProduto(Produtos produto) throws SQLException;
 	
 }

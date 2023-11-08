@@ -8,7 +8,7 @@ import java.util.List;
 
 import model.Produtos;
 
-public class DAOProdutosPostgree extends DAOProdutos{
+public class DAOProdutosPostgree implements DAOProdutos{
 
 	private ConexaoPostgreSQL conexao;
 	
@@ -56,5 +56,29 @@ public class DAOProdutosPostgree extends DAOProdutos{
 		}
 		return produtos;
 	}
+
+	@Override
+	public void addProduto(Produtos produto) throws SQLException {
+		
+		if(produto != null) {
+			this.pstm = this.conexao.getConn().prepareStatement("INSERT INTO produtos (nome,preco) VALUES ('?',?) ");
+			this.pstm.setString(1,produto.getNomeString());
+			this.pstm.setDouble(2, produto.getPreco());
+			ResultSet rs = this.pstm.executeQuery();
+			
+			
+			if(rs.next()) {
+				
+			}
+		}else {
+			System.out.println("produto é nulo!!!!!");
+		}
+		
+		
+		
+		
+	}
+	
+	
 
 }
