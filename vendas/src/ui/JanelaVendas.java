@@ -157,6 +157,7 @@ public class JanelaVendas {
 		
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnAdicionar.setBounds(119, 143, 176, 23);
