@@ -56,29 +56,35 @@ public class DAOProdutosPostgree implements DAOProdutos{
 		}
 		return produtos;
 	}
+	
+	public Produtos getProduto(int ID) throws SQLException {
+		
+		this.pstm = this.conexao.getConn().prepareStatement("select * from produtos where id = ?;");
+		this.pstm.setInt(1, ID);
+		ResultSet rs = this.pstm.executeQuery();
+		
+		Produtos produtos = null;
+		if(rs.next()) {
+			int id_produto = rs.getInt("id");
+			String name = rs.getString("nome");
+			double preco = rs.getDouble("preco");
+			produtos = new Produtos(id_produto,name,preco);
+		}
+		return produtos;
+	}
 
 	@Override
-	public void addProduto(Produtos produto) throws SQLException {
-		
-		if(produto != null) {
-			this.pstm = this.conexao.getConn().prepareStatement("INSERT INTO produtos (nome,preco) VALUES ('?',?) ");
+	public Produtos addProduto(String nomeString, double preco) throws SQLException {
+		Produtos produto = null;
+		if( !nomeString.isEmpty() || nomeString.length() > 0) {
+			produto = new Produtos(nomeString,preco);
+			this.pstm = this.conexao.getConn().prepareStatement("INSERT INTO produtos (nome,preco) VALUES (?,?) ");
 			this.pstm.setString(1,produto.getNomeString());
 			this.pstm.setDouble(2, produto.getPreco());
-			ResultSet rs = this.pstm.executeQuery();
-			
-			
-			if(rs.next()) {
-				
-			}
-		}else {
-			System.out.println("produto é nulo!!!!!");
+			this.pstm.executeUpdate();
 		}
-		
-		
-		
-		
+
+		return produto;
 	}
 	
-	
-
 }

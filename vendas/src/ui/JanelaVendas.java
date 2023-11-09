@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -23,18 +24,17 @@ import javax.swing.JPanel;
 public class JanelaVendas {
 
 	private JFrame frame;
-	private DAOProdutosPostgree produtos = new DAOProdutosPostgree();
+
 	private final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 	private final JPanel panelConsultar = new JPanel();
-	private final JPanel panelAdicionar = new JPanel();
-	private JTextField txtFieldProduto_Adicionar;
-	private JTextField textFieldID_Adicionar;
-	private JTextField textFieldPreco_Adicionar;
+	private final JPanel panelVender = new JPanel();
+	private JTextField txtAdicionar_Qtd;
 	private JComboBox cbProdutos = new JComboBox();
 	private JButton btnAdicionar = new JButton("Adicionar");
-	private JLabel lblPreco_Adicionar = new JLabel("Preço :");
 	private JTextPane txtPaneID = new JTextPane();
+	private JComboBox cmbProdutos = new JComboBox();
 	private JTextPane txtPanelPreco = new JTextPane();
+	private DAOProdutosPostgree dao_produtos;
 	private List<Produtos> listaProdutos;
 	
 	
@@ -65,7 +65,7 @@ public class JanelaVendas {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
+		dao_produtos = new DAOProdutosPostgree();
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,18 +78,20 @@ public class JanelaVendas {
 		
 		
         try {
-            listaProdutos = produtos.getProdutos();
-            listaProdutos.forEach(item -> cbProdutos.addItem(item.getNomeString()));
+            listaProdutos = dao_produtos.getProdutos();
+            listaProdutos.stream().forEach(item -> cbProdutos.addItem(item.getNomeString()));
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
+        
         
 		JLabel lblProdutos = new JLabel("Produtos :");
 		lblProdutos.setBounds(86, 50, 84, 14);
 		panelConsultar.add(lblProdutos);
 		cbProdutos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-     
+            	txtPaneID.setVisible(true);
+            	txtPanelPreco.setVisible(true);
                 int selectedIndex = cbProdutos.getSelectedIndex();
                 if (selectedIndex >= 0) {
                     Produtos produtoSelecionado = listaProdutos.get(selectedIndex);
@@ -103,7 +105,8 @@ public class JanelaVendas {
 		cbProdutos.setBounds(180, 46, 130, 22);
 		panelConsultar.add(cbProdutos);
 		
-		
+		txtPaneID.setVisible(false);
+		txtPanelPreco.setVisible(false);
 		txtPaneID.setBounds(157, 101, 224, 20);
 		panelConsultar.add(txtPaneID);
 		
@@ -119,44 +122,57 @@ public class JanelaVendas {
 		txtPanelPreco.setBounds(157, 126, 224, 20);
 		panelConsultar.add(txtPanelPreco);
 		
-		tabbedPane.addTab("Adicionar", null, panelAdicionar, null);
-		panelAdicionar.setLayout(null);
+		tabbedPane.addTab("Vender", null, panelVender, null);
+		panelVender.setLayout(null);
 		
-		JLabel lblProduto_Adicionar = new JLabel("Produto :");
-		lblProduto_Adicionar.setBounds(80, 29, 73, 14);
-		panelAdicionar.add(lblProduto_Adicionar);
+		JLabel lblAdicionarProduto = new JLabel("Produto :");
+		lblAdicionarProduto.setBounds(31, 29, 122, 14);
+		panelVender.add(lblAdicionarProduto);
 		
-		txtFieldProduto_Adicionar = new JTextField();
-		txtFieldProduto_Adicionar.setBounds(189, 26, 131, 20);
-		panelAdicionar.add(txtFieldProduto_Adicionar);
-		txtFieldProduto_Adicionar.setColumns(10);
+		JLabel lblAdicionarQuantidade = new JLabel("Quantidade :");
+		lblAdicionarQuantidade.setBounds(31, 66, 95, 14);
+		panelVender.add(lblAdicionarQuantidade);
 		
-		JLabel lblID_Adicionar = new JLabel("ID :");
-		lblID_Adicionar.setBounds(80, 66, 46, 14);
-		panelAdicionar.add(lblID_Adicionar);
-		
-		textFieldID_Adicionar = new JTextField();
-		textFieldID_Adicionar.setColumns(10);
-		textFieldID_Adicionar.setBounds(189, 63, 131, 20);
-		panelAdicionar.add(textFieldID_Adicionar);
-		
-
-		
-		lblPreco_Adicionar.setBounds(80, 104, 46, 14);
-		panelAdicionar.add(lblPreco_Adicionar);
-		
-		textFieldPreco_Adicionar = new JTextField();
-		textFieldPreco_Adicionar.setColumns(10);
-		textFieldPreco_Adicionar.setBounds(189, 101, 131, 20);
-		panelAdicionar.add(textFieldPreco_Adicionar);
-		
+		txtAdicionar_Qtd = new JTextField();
+		txtAdicionar_Qtd.setColumns(10);
+		txtAdicionar_Qtd.setBounds(121, 63, 131, 20);
+		panelVender.add(txtAdicionar_Qtd);
+		txtAdicionar_Qtd.setVisible(false);
 		
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DAOVendasPostgree daoVendasPostgree = new DAOVendasPostgree();
+				Produtos produto = (Produtos) cmbProdutos.getSelectedItem(); 
+				Vendas vendas = new Vendas(Integer.parseInt(txtAdicionar_Qtd.getText()) , produto);
+				
+				try {
+					daoVendasPostgree.Vender(vendas);
+					JOptionPane.showMessageDialog(btnAdicionar, "o produto " + vendas.getProduto() + " foi vendido!" );
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});
-		btnAdicionar.setBounds(119, 143, 176, 23);
-		panelAdicionar.add(btnAdicionar);
+		btnAdicionar.setBounds(76, 109, 176, 23);
+		panelVender.add(btnAdicionar);
+		
+		try {
+			listaProdutos  = dao_produtos.getProdutos();
+			listaProdutos.stream().forEach(item -> {cmbProdutos.addItem(item);});
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		cmbProdutos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtAdicionar_Qtd.setVisible(true);
+			}
+		});
+		
+
+		cmbProdutos.setBounds(121, 25, 131, 22);
+		panelVender.add(cmbProdutos);
 	}
 }

@@ -12,6 +12,9 @@ public interface DAOProdutos {
 	
 	public  Produtos getProduto(String nome) throws SQLException;
 	
-	public void addProduto(Produtos produto) throws SQLException;
+	public Produtos getProduto(int ID) throws SQLException;
+	
+	public Produtos addProduto(String nomeString, double preco) throws SQLException;
+	
 	
 }
