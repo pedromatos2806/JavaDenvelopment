@@ -46,7 +46,7 @@ public class Vendas {
 		
 		@Override 
 		public String toString() {
-			return produto.getNomeString() + getQuantidade()  ;
+			return  "" + getId();
 			}
 
 }

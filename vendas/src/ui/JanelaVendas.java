@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import dao.*;
@@ -25,22 +26,11 @@ import java.awt.Font;
 public class JanelaVendas {
 
 	private JFrame frame;
-
-	private final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-	private final JPanel panelConsultar = new JPanel();
-	private final JPanel panelVender = new JPanel();
-	private JTextField txtVenderQtd;
-	private JComboBox cmbConsultarProdutos = new JComboBox();
-	private JButton btnVenderAdicionar = new JButton("Adicionar");
-	private JTextPane txtPaneID = new JTextPane();
-	private JComboBox cmbVenderProdutos = new JComboBox();
-	private JTextPane txtPanelPreco = new JTextPane();
-	private DAOProdutosPostgree dao_produtos;
-	private List<Produtos> listaProdutos;
-	private final JPanel panel = new JPanel();
-	private JTextField txtAddNome;
-	private JTextField txtAddPreco;
+	private DAOVendasPostgree dao_vendas = new DAOVendasPostgree();;
+	private DAOProdutosPostgree dao_produtos = new DAOProdutosPostgree();
+	private List<Produtos> listaProdutos = new ArrayList<Produtos>();
 	
+
 	
 	/**
 	 * Launch the application.
@@ -68,18 +58,60 @@ public class JanelaVendas {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() {	
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		
+		JPanel panelConsultar = new JPanel();
+		JLabel lblConsultarID = new JLabel("ID :");
+		JLabel lblConsultarProdutos = new JLabel("Produtos :");
+		JLabel lblConsultarPreco = new JLabel("Preço :");
+		JComboBox cmbConsultarProdutos = new JComboBox();
+		JTextPane txtConsultarID = new JTextPane();
+		JTextPane txtConsultarPreco = new JTextPane();
+
+		
+		JPanel panelAdd = new JPanel();
+		JLabel lblAddPreco = new JLabel("Preco");
+		JLabel lblAddNome = new JLabel("Nome:");
+		JTextField txtAddNome;
+		JTextField txtAddPreco;
+		JButton btnAddProduto = new JButton("Adicionar Produto");
+		
+
+		JPanel panelVender = new JPanel();
+		JLabel lblVenderProduto = new JLabel("Produto :");
+		JLabel lblVenderQuantidade = new JLabel("Quantidade :");
+		JTextField txtVenderQtd;
+		JComboBox cmbVenderProdutos = new JComboBox();
+		JButton btnVenderAdicionar = new JButton("Adicionar");
+
+
+
+		JPanel panelNF = new JPanel();
+		JLabel lblNFVendas = new JLabel("Vendas :");
+		JLabel lblNFProduto = new JLabel("Produto :");
+		JLabel lblNFQuantidade = new JLabel("Quantidade :");
+		JTextField txtNFProduto;
+		JTextField txtNFQuantidade;
+		JComboBox cmbNFVendas = new JComboBox();
+
+		
+		
 		dao_produtos = new DAOProdutosPostgree();
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		
 		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
 		tabbedPane.addTab("Consultar", null, panelConsultar, null);
 		panelConsultar.setLayout(null);
 		
+		txtConsultarID.enable(false);
+		txtConsultarPreco.enable(false);
+		txtConsultarID.setVisible(false);
+		txtConsultarPreco.setVisible(false);
 		
         try {
             listaProdutos = dao_produtos.getProdutos();
@@ -88,19 +120,18 @@ public class JanelaVendas {
             e1.printStackTrace();
         }
         
-        
-		JLabel lblProdutos = new JLabel("Produtos :");
-		lblProdutos.setBounds(86, 50, 84, 14);
-		panelConsultar.add(lblProdutos);
+		lblConsultarProdutos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblConsultarProdutos.setBounds(86, 50, 84, 14);
+		panelConsultar.add(lblConsultarProdutos);
 		cmbConsultarProdutos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	txtPaneID.setVisible(true);
-            	txtPanelPreco.setVisible(true);
+            	txtConsultarID.setVisible(true);
+            	txtConsultarPreco.setVisible(true);
                 int selectedIndex = cmbConsultarProdutos.getSelectedIndex();
                 if (selectedIndex >= 0) {
                     Produtos produtoSelecionado = listaProdutos.get(selectedIndex);
-                    txtPaneID.setText(String.valueOf(produtoSelecionado.getId())); 
-                    txtPanelPreco.setText(String.valueOf(produtoSelecionado.getPreco()));
+                    txtConsultarID.setText(String.valueOf(produtoSelecionado.getId())); 
+                    txtConsultarPreco.setText(String.valueOf(produtoSelecionado.getPreco()));
                 }
             }
         });
@@ -108,56 +139,43 @@ public class JanelaVendas {
 		
 		cmbConsultarProdutos.setBounds(180, 46, 130, 22);
 		panelConsultar.add(cmbConsultarProdutos);
+		txtConsultarID.setBounds(157, 101, 224, 20);
+		panelConsultar.add(txtConsultarID);
+		lblConsultarID.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblConsultarID.setBounds(86, 101, 46, 14);
+		panelConsultar.add(lblConsultarID);
+		lblConsultarPreco.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblConsultarPreco.setBounds(86, 132, 46, 14);
+		panelConsultar.add(lblConsultarPreco);
+		txtConsultarPreco.setBounds(157, 126, 224, 20);
+		panelConsultar.add(txtConsultarPreco);
 		
-		txtPaneID.setVisible(false);
-		txtPanelPreco.setVisible(false);
-		txtPaneID.setBounds(157, 101, 224, 20);
-		panelConsultar.add(txtPaneID);
+
+		// Region Add 
+		tabbedPane.addTab("Adicionar", null, panelAdd, null);
+		panelAdd.setLayout(null);
 		
-		JLabel lblID = new JLabel("ID :");
-		lblID.setBounds(86, 101, 46, 14);
-		panelConsultar.add(lblID);
-		
-		JLabel lblPreco = new JLabel("Preço :");
-		lblPreco.setBounds(86, 132, 46, 14);
-		panelConsultar.add(lblPreco);
-		
-		
-		txtPanelPreco.setBounds(157, 126, 224, 20);
-		panelConsultar.add(txtPanelPreco);
-		
-		try {
-			listaProdutos  = dao_produtos.getProdutos();
-			listaProdutos.stream().forEach(item -> {cmbVenderProdutos.addItem(item);});
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		tabbedPane.addTab("Adicionar", null, panel, null);
-		panel.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Nome:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(24, 29, 61, 34);
-		panel.add(lblNewLabel);
+
+		lblAddNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAddNome.setBounds(64, 38, 61, 34);
+		panelAdd.add(lblAddNome);
 		
 		txtAddNome = new JTextField();
-		txtAddNome.setBounds(136, 38, 142, 20);
-		panel.add(txtAddNome);
+		txtAddNome.setBounds(176, 47, 142, 20);
+		panelAdd.add(txtAddNome);
 		txtAddNome.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Preco");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(24, 86, 61, 28);
-		panel.add(lblNewLabel_1);
+		
+		lblAddPreco.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAddPreco.setBounds(64, 95, 61, 28);
+		panelAdd.add(lblAddPreco);
 		
 		txtAddPreco = new JTextField();
-		txtAddPreco.setBounds(136, 92, 142, 20);
-		panel.add(txtAddPreco);
+		txtAddPreco.setBounds(176, 101, 142, 20);
+		panelAdd.add(txtAddPreco);
 		txtAddPreco.setColumns(10);
 		
-		JButton btnAddProduto = new JButton("Adicionar Produto");
+		
 		btnAddProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DAOProdutosPostgree daoprodutos = new DAOProdutosPostgree();
@@ -178,24 +196,33 @@ public class JanelaVendas {
 
 			}
 		});
-		btnAddProduto.setBounds(136, 144, 169, 23);
-		panel.add(btnAddProduto);
+		btnAddProduto.setBounds(176, 153, 169, 23);
+		panelAdd.add(btnAddProduto);
 		
+		// Region Vender 
 		tabbedPane.addTab("Vender", null, panelVender, null);
 		panelVender.setLayout(null);
 		
-		JLabel lblVenderProduto = new JLabel("Produto :");
-		lblVenderProduto.setBounds(31, 29, 72, 14);
+		try {
+			listaProdutos  = dao_produtos.getProdutos();
+			listaProdutos.stream().forEach(item -> {cmbVenderProdutos.addItem(item);});
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		lblVenderProduto.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblVenderProduto.setBounds(92, 47, 72, 14);
 		panelVender.add(lblVenderProduto);
-		
-		JLabel lblVenderQuantidade = new JLabel("Quantidade :");
-		lblVenderQuantidade.setBounds(31, 66, 95, 14);
+
+		lblVenderQuantidade.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblVenderQuantidade.setBounds(92, 84, 95, 14);
 		panelVender.add(lblVenderQuantidade);
 		
 		txtVenderQtd = new JTextField();
 		txtVenderQtd.setColumns(10);
-		txtVenderQtd.setBounds(121, 63, 131, 20);
+		txtVenderQtd.setBounds(182, 81, 131, 20);
 		panelVender.add(txtVenderQtd);
+		
 		txtVenderQtd.setVisible(false);
 		
 		btnVenderAdicionar.addActionListener(new ActionListener() {
@@ -214,7 +241,9 @@ public class JanelaVendas {
 				
 			}
 		});
-		btnVenderAdicionar.setBounds(76, 109, 176, 23);
+		
+		
+		btnVenderAdicionar.setBounds(137, 127, 176, 23);
 		panelVender.add(btnVenderAdicionar);
 		cmbVenderProdutos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -222,8 +251,65 @@ public class JanelaVendas {
 			}
 		});
 		
+		try {
+			var lista_vendas = dao_vendas.getVendas();
+			lista_vendas.stream().forEach(item -> cmbNFVendas.addItem(item));
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
-		cmbVenderProdutos.setBounds(121, 25, 131, 22);
+		cmbVenderProdutos.setBounds(182, 43, 131, 22);
 		panelVender.add(cmbVenderProdutos);
+		
+		
+		// Region NF 
+		tabbedPane.addTab("Nota F.", null, panelNF, null);
+		panelNF.setLayout(null);
+
+		lblNFProduto.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNFProduto.setBounds(58, 90, 76, 14);
+		panelNF.add(lblNFProduto);
+		
+		txtNFProduto = new JTextField();
+		txtNFProduto.setBounds(174, 89, 180, 20);
+		panelNF.add(txtNFProduto);
+		txtNFProduto.setColumns(10);
+		
+
+		
+		lblNFQuantidade.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNFQuantidade.setBounds(58, 127, 86, 20);
+		panelNF.add(lblNFQuantidade);
+		
+		txtNFQuantidade = new JTextField();
+		txtNFQuantidade.setBounds(174, 129, 180, 20);
+		panelNF.add(txtNFQuantidade);
+		txtNFQuantidade.setColumns(10);
+		
+		
+		lblNFVendas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNFVendas.setBounds(58, 46, 76, 14);
+		panelNF.add(lblNFVendas);
+		
+		txtNFProduto.setVisible(false);
+		txtNFQuantidade.setVisible(false);
+		txtNFQuantidade.enable(false);
+		txtNFProduto.enable(false);
+		
+		cmbNFVendas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtNFProduto.setVisible(true);
+				txtNFQuantidade.setVisible(true);
+
+				Vendas vender = (Vendas) cmbNFVendas.getSelectedItem();
+
+				txtNFProduto.setText(vender.getProduto().getNomeString());
+				txtNFQuantidade.setText(String.valueOf(vender.getQuantidade()));
+
+			}
+		});
+		cmbNFVendas.setBounds(174, 44, 180, 22);
+		panelNF.add(cmbNFVendas);
 	}
 }
