@@ -21,13 +21,14 @@ public class DAOProdutosPostgree implements DAOProdutos{
 	
 	@Override
 	public List<Produtos> getProdutos() throws SQLException {
-		List<Produtos> lista = new ArrayList<Produtos>();
+		
+		
 		
 		this.pstm = this.conexao.getConn().prepareStatement("SELECT * FROM produtos");
 		
 		ResultSet rs = this.pstm.executeQuery();
 		
-		
+		List<Produtos> lista = new ArrayList<Produtos>();
 		while( rs.next()) {
 			int id = rs.getInt("id");
 			String nome = rs.getString("nome");

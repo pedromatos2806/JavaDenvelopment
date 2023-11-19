@@ -10,6 +10,7 @@ public class ConexaoPostgreSQL {
     //private static final String USUARIO = "seu_usuario";
     //private static final String SENHA = "sua_senha";
 
+    
     public Connection getConn() throws SQLException {
         Connection conn = DriverManager.getConnection(URL,"postgres","alunoifba");
         return conn;
