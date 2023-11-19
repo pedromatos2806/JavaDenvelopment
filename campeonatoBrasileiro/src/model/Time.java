@@ -14,6 +14,12 @@ public class Time {
 	int qtdJogadores;
 	
 	int pontuacao;
+	
+	int vit;
+	
+	int der;
+	
+	int emp;
 
 	public Time (int id, String nome ) {
 		setNome(nome);
@@ -28,6 +34,27 @@ public class Time {
 		setQtdJogadores(0);
 		jogadores = new ArrayList<Jogador>();
 		setPontuacao(0);
+	}
+	
+	public Time(int id, String nome, int pts , int vit , int der , int emp, int qtdJogadores) {
+		setId(id);
+		setNome(nome);
+		setPontuacao(pts);
+		setVit(vit);
+		setDer(der);
+		setEmp(emp);
+		setQtdJogadores(qtdJogadores);
+		jogadores = new ArrayList<Jogador>();	
+	}
+	
+	public Time( String nome, int pts , int vit , int der , int emp, int qtdJogadores) {
+		setNome(nome);
+		setPontuacao(pts);
+		setVit(vit);
+		setDer(der);
+		setEmp(emp);
+		setQtdJogadores(qtdJogadores);
+		jogadores = new ArrayList<Jogador>();	
 	}
 	
 	public String getNome() {
@@ -73,5 +100,34 @@ public class Time {
 	public Jogador addJogador(Jogador jogador) {
 		this.jogadores.add(jogador);
 		return jogador;
+	}
+
+	public int getVit() {
+		return vit;
+	}
+
+	public void setVit(int vit) {
+		this.vit = vit;
+	}
+
+	public int getDer() {
+		return der;
+	}
+
+	public void setDer(int der) {
+		this.der = der;
+	}
+
+	public int getEmp() {
+		return emp;
+	}
+
+	public void setEmp(int emp) {
+		this.emp = emp;
+	}
+
+	@Override 
+	public String toString() {
+		return getNome();
 	}
 }
