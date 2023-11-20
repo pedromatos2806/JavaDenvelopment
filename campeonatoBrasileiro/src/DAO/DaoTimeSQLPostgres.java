@@ -45,7 +45,7 @@ public class DaoTimeSQLPostgres implements DAOTimeSQL{
 	
 	@Override
 	public Time getTime(String nomeTime) throws SQLException {
-		pstm=conn.getConn().prepareStatement("SELECT * FROM times WHERE nome like '?' ");
+		pstm=conn.getConn().prepareStatement("SELECT * FROM times WHERE nome like ? ");
 		pstm.setString(1,nomeTime);
 		
 		rs=pstm.executeQuery();
@@ -64,25 +64,37 @@ public class DaoTimeSQLPostgres implements DAOTimeSQL{
 	}
 
 	@Override
-	public Time updateTime(Time time , String nome) throws SQLException {
-		Time t = getTime(nome);
-		if( t == null) {
-			return null;
-		}
-		
-		pstm = conn.getConn().prepareStatement("UPDATE times SET nome = '?' , pts = ? , vit = ? , der = ? , emp = ? , qtdjogador = ? WHERE nome = '?' ");
-		pstm.setString(1, time.getNome());
-		pstm.setInt(2, time.getPontuacao());
-		pstm.setInt(3, time.getVit());
-		pstm.setInt(4, time.getDer());
-		pstm.setInt(5, time.getEmp());
-		pstm.setInt(6, time.getQtdJogadores());
-		pstm.setString(7, nome);
-		
-		pstm.executeUpdate();
-		
-		return time;
+	public Time updateTime(Time time, String nome) throws SQLException {
+	    Time t = getTime(nome);
+
+	    if (t == null) {
+	        System.out.println("Time não encontrado para atualização: " + nome);
+	        return null;
+	    }
+
+	    try (PreparedStatement pstm = conn.getConn().prepareStatement(
+	            "UPDATE times SET nome = ?, pts = ?, vit = ?, der = ?, emp = ?, qtdjogador = ? WHERE nome = ?")) {
+
+	        pstm.setString(1, time.getNome());
+	        pstm.setInt(2, time.getPontuacao());
+	        pstm.setInt(3, time.getVit());
+	        pstm.setInt(4, time.getDer());
+	        pstm.setInt(5, time.getEmp());
+	        pstm.setInt(6, time.getQtdJogadores());
+	        pstm.setString(7, nome);
+
+	        pstm.executeUpdate();
+
+	        return time;
+	    } catch (SQLException e) {
+	        System.err.println("Erro ao atualizar o time: " + e.getMessage());
+	        e.printStackTrace(); // Tratar ou registrar a exceção conforme necessário
+	    }
+
+	    return null;
 	}
+
+
 	
 	@Override
 	public void deleteTime(String nome) throws SQLException {

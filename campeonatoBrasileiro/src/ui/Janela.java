@@ -162,65 +162,65 @@ public class Janela {
 		pnlUpdate.add(lblUpdateTime);
 		
 		JLabel lblUpdateNome = new JLabel("Nome do time modificado :");
-		lblUpdateNome.setBounds(67, 47, 127, 31);
+		lblUpdateNome.setBounds(28, 49, 156, 31);
 		pnlUpdate.add(lblUpdateNome);
 		
 		txtUpdateNomeMod = new JTextField();
-		txtUpdateNomeMod.setBounds(241, 54, 109, 20);
+		txtUpdateNomeMod.setBounds(209, 54, 109, 20);
 		pnlUpdate.add(txtUpdateNomeMod);
 		txtUpdateNomeMod.setColumns(10);
 		
 		JLabel lblUpdateNewName = new JLabel("Nome do novo time: ");
-		lblUpdateNewName.setBounds(67, 91, 99, 20);
+		lblUpdateNewName.setBounds(70, 91, 114, 20);
 		pnlUpdate.add(lblUpdateNewName);
 		
 		txtUpdateNewName = new JTextField();
-		txtUpdateNewName.setBounds(241, 91, 109, 20);
+		txtUpdateNewName.setBounds(209, 91, 109, 20);
 		pnlUpdate.add(txtUpdateNewName);
 		txtUpdateNewName.setColumns(10);
 		
 		JLabel lblUpdatePts = new JLabel("Pts : ");
-		lblUpdatePts.setBounds(67, 132, 46, 14);
+		lblUpdatePts.setBounds(138, 125, 46, 14);
 		pnlUpdate.add(lblUpdatePts);
 		
 		txtUpdatePts = new JTextField();
 		txtUpdatePts.setColumns(10);
-		txtUpdatePts.setBounds(241, 129, 109, 20);
+		txtUpdatePts.setBounds(209, 122, 109, 20);
 		pnlUpdate.add(txtUpdatePts);
 		
 		JLabel lblUpdateVit = new JLabel("Vit :");
-		lblUpdateVit.setBounds(67, 170, 46, 14);
+		lblUpdateVit.setBounds(138, 163, 34, 14);
 		pnlUpdate.add(lblUpdateVit);
 		
 		txtUpdateVit = new JTextField();
-		txtUpdateVit.setBounds(241, 160, 109, 20);
+		txtUpdateVit.setBounds(209, 160, 109, 20);
 		pnlUpdate.add(txtUpdateVit);
 		txtUpdateVit.setColumns(10);
 		
 		JLabel lblUpdateDer = new JLabel("Der :");
-		lblUpdateDer.setBounds(67, 206, 46, 14);
+		lblUpdateDer.setBounds(138, 194, 46, 14);
 		pnlUpdate.add(lblUpdateDer);
 		
 		txtUpdateDer = new JTextField();
-		txtUpdateDer.setBounds(240, 203, 110, 20);
+		txtUpdateDer.setBounds(208, 191, 110, 20);
 		pnlUpdate.add(txtUpdateDer);
 		txtUpdateDer.setColumns(10);
 		
 		JLabel lblUpdateEmp = new JLabel("Emp :");
-		lblUpdateEmp.setBounds(67, 238, 46, 14);
+		lblUpdateEmp.setBounds(138, 225, 46, 14);
 		pnlUpdate.add(lblUpdateEmp);
 		
 		txtUpdateEmp = new JTextField();
-		txtUpdateEmp.setBounds(241, 235, 109, 20);
+		txtUpdateEmp.setBounds(209, 222, 109, 20);
 		pnlUpdate.add(txtUpdateEmp);
 		txtUpdateEmp.setColumns(10);
 		
 		JLabel lblQtdJogador = new JLabel("qtd jogadores :");
-		lblQtdJogador.setBounds(67, 276, 127, 14);
+		lblQtdJogador.setBounds(103, 256, 81, 14);
 		pnlUpdate.add(lblQtdJogador);
 		
 		txtUpdateQtdJogadores = new JTextField();
-		txtUpdateQtdJogadores.setBounds(241, 273, 109, 20);
+		txtUpdateQtdJogadores.setBounds(209, 253, 109, 20);
 		pnlUpdate.add(txtUpdateQtdJogadores);
 		txtUpdateQtdJogadores.setColumns(10);
 		
