@@ -111,42 +111,42 @@ public class janelaJogoDaVelha {
 		frame.getContentPane().add(lblTitulo);
 		
 		//Coluna 1 
-		cmb11.addItem(null);
+		cmb11.addItem("");
 		cmb11.addItem("X");
 		cmb11.addItem("O");
 		
-		cmb12.addItem(null);
+		cmb12.addItem("");
 		cmb12.addItem("X");
 		cmb12.addItem("O");
 		
-		cmb13.addItem(null);
+		cmb13.addItem("");
 		cmb13.addItem("X");
 		cmb13.addItem("O");
 		
 		//Coluna 2
-		cmb21.addItem(null);
+		cmb21.addItem("");
 		cmb21.addItem("X");
 		cmb21.addItem("O");
 
-		cmb22.addItem(null);
+		cmb22.addItem("");
 		cmb22.addItem("X");
 		cmb22.addItem("O");
 	
 	
-		cmb23.addItem(null);
+		cmb23.addItem("");
 		cmb23.addItem("X");
 		cmb23.addItem("O");
 		
 		//Coluna 3
-		cmb31.addItem(null);
+		cmb31.addItem("");
 		cmb31.addItem("X");
 		cmb31.addItem("O");
 		
-		cmb32.addItem(null);
+		cmb32.addItem("");
 		cmb32.addItem("X");
 		cmb32.addItem("O");
 		
-		cmb33.addItem(null);
+		cmb33.addItem("");
 		cmb33.addItem("X");
 		cmb33.addItem("O");
 	
@@ -157,53 +157,38 @@ public class janelaJogoDaVelha {
 			public void actionPerformed(ActionEvent e) {
 				
 				String winner = null;
-				
-				String v11 = (String) cmb11.getSelectedItem();
-				String v12 = (String) cmb12.getSelectedItem();
-				String v13 = (String) cmb13.getSelectedItem();
-				
-				String v21 = (String) cmb21.getSelectedItem();
-				String v22 = (String) cmb22.getSelectedItem();
-				String v23 = (String) cmb23.getSelectedItem();
-				
-				String v31 = (String) cmb31.getSelectedItem();
-				String v32 = (String) cmb32.getSelectedItem();
-				String v33 = (String) cmb33.getSelectedItem();
-					
-				
-			
-				
-				if(( v11.equals(v12) ) && (v11.equals(v13) )&& (v11 != "") ){
-					winner = v11;
+
+				if(( cmb11.getSelectedItem().equals(cmb12.getSelectedItem()) ) && (cmb11.getSelectedItem().equals( cmb13.getSelectedItem()) )&& (cmb11.getSelectedItem() != "") ){
+					winner =(String) cmb11.getSelectedItem();
 					txtVencedor.setText(winner);
 					return;
-				} if  ( (v21.equals(v22) )&& (v21.equals(v23) )&& (v21 != "") ) {
-					winner = v21;
+				} if  ( (cmb21.getSelectedItem().equals(cmb22.getSelectedItem()) )&& (cmb21.getSelectedItem().equals(cmb23.getSelectedItem()) )&& (cmb21.getSelectedItem() != "") ) {
+					winner =(String) cmb21.getSelectedItem();
 					txtVencedor.setText(winner);
 					return;
-				} if((v31.equals(v32)) && ( v31.equals(v33) ) && (v31 != "") ){
-					winner = v31;
+				} if((cmb31.getSelectedItem().equals( cmb32.getSelectedItem())) && ( cmb31.getSelectedItem().equals( cmb33.getSelectedItem()) ) && (cmb31.getSelectedItem() != "") ){
+					winner = (String) cmb31.getSelectedItem();
 					txtVencedor.setText(winner);
 					return;
-				}if( (v11.equals(v21) )&&( v11.equals(v31) ) && (v11 != "") ){
-					winner = v11;
+				}if( (cmb11.getSelectedItem().equals(cmb21.getSelectedItem()) )&&( cmb11.getSelectedItem().equals(cmb31.getSelectedItem()) ) && (cmb11.getSelectedItem() != "") ){
+					winner =(String) cmb11.getSelectedItem();
 					txtVencedor.setText(winner);
 					return;
-				}if( (v12.equals(v22) ) && (v12.equals(v32) )&& (v12 != "") ){
-					winner=v12;
+				}if( (cmb12.getSelectedItem().equals(cmb22.getSelectedItem()) ) && (cmb12.getSelectedItem().equals( cmb32.getSelectedItem()) )&& (cmb12.getSelectedItem() != "") ){
+					winner= (String)cmb12.getSelectedItem();
 					txtVencedor.setText(winner);
 					return;
 					
-				} if( (v13.equals(v23) ) && (v13.equals(v33) )&& (v13 != "") ){
-					winner=v13;
+				} if( (cmb13.getSelectedItem().equals(cmb23.getSelectedItem()) ) && (cmb13.getSelectedItem().equals( cmb33.getSelectedItem()) )&& (cmb13.getSelectedItem() != "") ){
+					winner=(String) cmb13.getSelectedItem();
 					txtVencedor.setText(winner);
 					return;
-				} if((v11.equals(v22) )&& (v11.equals(v33) )&& (v11 != "") ){
-					winner=v11;
+				} if((cmb11.getSelectedItem().equals(cmb22.getSelectedItem()) )&& (cmb11.getSelectedItem().equals(cmb33.getSelectedItem()) )&& (cmb11.getSelectedItem() != "") ){
+					winner=(String)cmb11.getSelectedItem();
 					txtVencedor.setText(winner);
 					return;
-				} if ((v31.equals(v22) ) && (v31.equals(v13) )&& (v31 != "") ){
-					winner=v31;
+				} if ((cmb31.getSelectedItem().equals(cmb22.getSelectedItem()) ) && (cmb31.getSelectedItem().equals(cmb13.getSelectedItem()) )&& (cmb31.getSelectedItem() != "") ){
+					winner=(String)cmb31.getSelectedItem();
 					txtVencedor.setText(winner);
 					return;
 				}
