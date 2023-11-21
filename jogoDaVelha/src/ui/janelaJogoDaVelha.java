@@ -19,7 +19,15 @@ public class janelaJogoDaVelha {
 
 	private JFrame frame;
 	private JTextField txtVencedor;
-
+	JComboBox<String> cmb11 = new JComboBox();
+	JComboBox<String> cmb12 = new JComboBox();
+	JComboBox<String> cmb13 = new JComboBox();
+	JComboBox<String> cmb21 = new JComboBox();
+	JComboBox<String> cmb22 = new JComboBox();
+	JComboBox<String> cmb23 = new JComboBox();
+	JComboBox<String> cmb31 = new JComboBox();
+	JComboBox<String> cmb32 = new JComboBox();
+	JComboBox<String> cmb33 = new JComboBox();
 	/**
 	 * Launch the application.
 	 */
@@ -47,7 +55,7 @@ public class janelaJogoDaVelha {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
+
 		frame = new JFrame();
 		frame.setBounds(100, 100, 507, 386);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,43 +73,60 @@ public class janelaJogoDaVelha {
 	
 		
 		JButton btnIniciar = new JButton("Iniciar");
+		btnIniciar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cmb11.setSelectedIndex(0);
+				cmb12.setSelectedIndex(0);
+				cmb13.setSelectedIndex(0);
+				
+				cmb21.setSelectedIndex(0);
+				cmb22.setSelectedIndex(0);
+				cmb23.setSelectedIndex(0);
+				
+				cmb31.setSelectedIndex(0);
+				cmb32.setSelectedIndex(0);
+				cmb33.setSelectedIndex(0);
+				
+				txtVencedor.setText("");
+			}
+		});
 		btnIniciar.setBounds(181, 274, 123, 38);
 		btnIniciar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		frame.getContentPane().add(btnIniciar);
 		
-		JComboBox<String> cmb11 = new JComboBox();
+		
 		cmb11.setBounds(77, 51, 47, 22);
 		frame.getContentPane().add(cmb11);
 		
-		JComboBox<String> cmb12 = new JComboBox();
+		
 		cmb12.setBounds(77, 98, 47, 22);
 		frame.getContentPane().add(cmb12);
 		
-		JComboBox<String> cmb13 = new JComboBox();
+		
 		cmb13.setBounds(77, 146, 47, 22);
 		frame.getContentPane().add(cmb13);
 		
-		JComboBox<String> cmb21 = new JComboBox();
+		
 		cmb21.setBounds(194, 51, 47, 22);
 		frame.getContentPane().add(cmb21);
 			
-		JComboBox<String> cmb22 = new JComboBox();
+		
 		cmb22.setBounds(194, 98, 47, 22);
 		frame.getContentPane().add(cmb22);
 		
-		JComboBox<String> cmb23 = new JComboBox();
+		
 		cmb23.setBounds(194, 146, 47, 22);
 		frame.getContentPane().add(cmb23);
 		
-		JComboBox<String> cmb31 = new JComboBox();
+		
 		cmb31.setBounds(313, 51, 47, 22);
 		frame.getContentPane().add(cmb31);
 
-		JComboBox<String> cmb32 = new JComboBox();
+		
 		cmb32.setBounds(313, 98, 47, 22);
 		frame.getContentPane().add(cmb32);
 		
-		JComboBox<String> cmb33 = new JComboBox();
+		
 		cmb33.setBounds(313, 146, 47, 22);
 		frame.getContentPane().add(cmb33);
 		
@@ -150,7 +175,7 @@ public class janelaJogoDaVelha {
 		cmb33.addItem("X");
 		cmb33.addItem("O");
 	
-		//txtVencedor.enable(false);
+		txtVencedor.enable(false);
 		
 		JButton btnConfirme = new JButton("Confirmo a jogada");
 		btnConfirme.addActionListener(new ActionListener() {
@@ -196,10 +221,6 @@ public class janelaJogoDaVelha {
 		});
 		btnConfirme.setBounds(168, 187, 148, 23); 
 		frame.getContentPane().add(btnConfirme);
-		
-		
-
-	
 	
 	}
 }
