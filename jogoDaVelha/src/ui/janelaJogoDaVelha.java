@@ -75,6 +75,7 @@ public class janelaJogoDaVelha {
 		JButton btnIniciar = new JButton("Iniciar");
 		btnIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				cmb11.setSelectedIndex(0);
 				cmb12.setSelectedIndex(0);
 				cmb13.setSelectedIndex(0);

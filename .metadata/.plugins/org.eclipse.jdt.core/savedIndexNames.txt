@@ -8,7 +8,6 @@ INDEX VERSION 1.134+C:\Users\Pedro Matos\eclipse-workspace\.metadata\.plugins\or
 1865797976.index
 3488579260.index
 2752330790.index
-3565016048.index
 2016854959.index
 4179982527.index
 3794181748.index
